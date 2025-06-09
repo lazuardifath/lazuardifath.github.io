@@ -1,1 +1,463 @@
-"Hello World" 
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Edukasi: Tren Sistem Informasi Rumah Sakit (Edisi Mahasiswa)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F9FA;
+            color: #212529;
+            line-height: 1.7;
+        }
+        .hero {
+            background: linear-gradient(rgba(3, 4, 94, 0.75), rgba(3, 4, 94, 0.75)), url('https://placehold.co/1600x900/0077B6/FFFFFF?text=Layanan+Kesehatan+Digital') no-repeat center center/cover;
+        }
+        .section-title {
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: #0077B6;
+            margin-bottom: 1rem;
+            text-align: center;
+            line-height: 1.2;
+        }
+        .section-subtitle {
+            font-size: 1.25rem;
+            color: #6C757D;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto: 3rem auto;
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            padding: 2.5rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.07), 0 4px 6px -2px rgb(0 0 0 / 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 10px 10px -5px rgb(0 0 0 / 0.04);
+        }
+        .card-border {
+             border-left: 5px solid #00B4D8;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin: 1rem auto;
+            height: 350px;
+        }
+        .radar-chart-container {
+             position: relative;
+            width: 100%;
+            max-width: 450px;
+            margin: 1rem auto;
+            height: 400px;
+        }
+        .flow-diagram-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .flow-step {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        .flow-icon {
+            flex-shrink: 0;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .flow-content { flex-grow: 1; }
+        .flow-arrow-down {
+            height: 40px;
+            width: 2px;
+            background-color: #CAF0F8;
+            margin-left: 29px;
+            position: relative;
+        }
+         .flow-arrow-down::after {
+            content: '▼';
+            position: absolute;
+            bottom: -10px;
+            left: -8px;
+            color: #00B4D8;
+            font-size: 1.2rem;
+        }
+        .research-box {
+            background-color: #EAFBFF;
+            border-left: 5px solid #0077B6;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .ecosystem-diagram {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            align-items: center;
+            text-align: center;
+        }
+        .ecosystem-center {
+            grid-column: 1 / -1;
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: #03045E;
+            padding: 2rem;
+            background-color: #CAF0F8;
+            border-radius: 50%;
+            width: 180px;
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1rem auto;
+            border: 5px solid white;
+            box-shadow: 0 0 0 5px #00B4D8;
+        }
+        .ecosystem-node {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <header class="hero text-white py-24 px-4">
+        <div class="container mx-auto text-center">
+            <h1 class="text-4xl md:text-6xl font-black mb-4 tracking-tight">Administrasi Rumah Sakit 4.0: Panduan Lengkap</h1>
+            <p class="text-xl md:text-2xl font-light max-w-4xl mx-auto">Selamat datang, calon pemimpin! Halaman ini adalah panduan komprehensif untuk kamu dalam memahami dan menguasai masa depan layanan kesehatan digital.</p>
+            <a href="#mulai-belajar" class="mt-8 inline-block bg-[#00B4D8] hover:bg-[#0096C7] text-white font-bold py-3 px-8 rounded-full text-lg transition-transform hover:scale-105">Mari Mulai Belajar 👇</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8" id="mulai-belajar">
+
+        <section class="my-20">
+            <h2 class="section-title">Pilar #1: AI, Rekan Kerja Cerdas di Dunia Medis 👨‍⚕️🧠</h2>
+            <p class="section-subtitle">Kecerdasan Buatan (AI) bukan lagi fiksi ilmiah. Di rumah sakit, AI berperan sebagai asisten analisis yang kuat, membantu para profesional medis membuat keputusan yang lebih cepat dan akurat.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                <div class="card card-border">
+                    <h3 class="text-2xl font-bold mb-4 text-[#03045E]">Mengenal Jenis-jenis AI di RS</h3>
+                    <p class="mb-4">"AI" adalah istilah payung. Sebagai calon administrator, kamu perlu tahu beberapa jenisnya:</p>
+                    <ul class="list-disc list-inside space-y-2">
+                        <li><strong>Machine Learning (ML):</strong> Jenis AI paling umum, dilatih untuk menemukan pola dalam data. Contoh: memprediksi pasien mana yang berisiko mengalami readmisi (dirawat kembali).</li>
+                        <li><strong>Natural Language Processing (NLP):</strong> Memungkinkan komputer memahami bahasa manusia. Contoh: menganalisis catatan dokter yang tidak terstruktur untuk mengekstrak informasi penting.</li>
+                        <li><strong>Computer Vision:</strong> Kemampuan AI untuk "melihat" dan menginterpretasikan gambar. Ini adalah teknologi di balik analisis Rontgen dan CT Scan.</li>
+                    </ul>
+                </div>
+                <div class="card card-border">
+                    <h3 class="text-2xl font-bold mb-4 text-[#03045E]">Dampak Nyata AI di Rumah Sakit</h3>
+                    <p class="mb-2">AI bukan cuma canggih, tapi juga memberikan dampak terukur:</p>
+                     <div class="chart-container h-80">
+                        <canvas id="aiImpactChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="research-box mt-12">
+                <h3 class="text-xl font-bold mb-2 text-[#0077B6]">🔍 Fokus Riset #1: Akurasi Diagnostik</h3>
+                <p>Sebuah studi meta-analisis di **The Lancet Digital Health** menemukan bahwa model AI *deep learning* mencapai tingkat akurasi yang sebanding dengan tenaga kesehatan profesional dalam menganalisis citra medis. Penelitian lain dari **Artificial Intelligence Center Indonesia (AICI)** pada tahun 2024 menyoroti bahwa implementasi AI dalam skrining kanker payudara dapat meningkatkan tingkat deteksi hingga 15% dan secara bersamaan mengurangi hasil positif palsu.</p>
+            </div>
+
+            <div class="card mt-12">
+                <h3 class="text-2xl font-bold mb-6 text-center text-[#03045E]">Studi Kasus: Alur Kerja AI di Unit Radiologi Modern</h3>
+                <p class="text-center text-gray-600 mb-8">Berikut adalah alur kerja realistis yang mulai diterapkan di banyak rumah sakit terkemuka.</p>
+                <div class="flow-diagram-container max-w-3xl mx-auto">
+                    <div class="flow-step">
+                        <div class="flow-icon bg-[#00B4D8]">🖥️</div>
+                        <div class="flow-content">
+                            <h4 class="font-bold">1. Akuisisi Gambar Digital</h4>
+                            <p>Hasil CT Scan paru-paru pasien secara otomatis terkirim dan tersimpan di sistem PACS (Picture Archiving and Communication System) rumah sakit.</p>
+                        </div>
+                    </div>
+                    <div class="flow-arrow-down"></div>
+                    <div class="flow-step">
+                         <div class="flow-icon bg-[#0096C7]">🧠</div>
+                        <div class="flow-content">
+                            <h4 class="font-bold">2. Analisis oleh AI (dalam hitungan detik)</h4>
+                            <p>Model AI yang telah dilatih secara otomatis memindai ratusan gambar potongan CT Scan, lalu menandai area yang dicurigai sebagai nodul paru-paru dengan memberikan skor probabilitas keganasan.</p>
+                        </div>
+                    </div>
+                    <div class="flow-arrow-down"></div>
+                    <div class="flow-step">
+                         <div class="flow-icon bg-[#0077B6]">👨‍⚕️</div>
+                        <div class="flow-content">
+                            <h4 class="font-bold">3. Verifikasi oleh Dokter Radiolog</h4>
+                            <p>Dokter membuka hasil pindai di komputernya dan langsung melihat area yang telah ditandai oleh AI. Ini memungkinkan dokter untuk fokus pada area yang paling kritis dan mempercepat proses diagnosis.</p>
+                        </div>
+                    </div>
+                     <div class="flow-arrow-down"></div>
+                     <div class="flow-step">
+                         <div class="flow-icon bg-[#03045E]">📝</div>
+                        <div class="flow-content">
+                            <h4 class="font-bold">4. Laporan Final ke Rekam Medis Elektronik (RME)</h4>
+                            <p>Dokter membuat laporan akhir yang diperkuat oleh analisis AI. Laporan ini terintegrasi langsung ke RME pasien, dapat diakses oleh tim dokter onkologi untuk perencanaan perawatan lebih lanjut.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <div class="card mt-12">
+                <h3 class="text-2xl font-bold mb-4 text-[#03045E]">Tantangan & Dilema Etis AI</h3>
+                <p class="mb-4">Mengadopsi AI bukan tanpa tantangan. Sebagai administrator, kamu harus sadar akan isu-isu ini:</p>
+                <ul class="list-disc list-inside space-y-3">
+                    <li><strong>Bias Algoritmik:</strong> Jika AI dilatih dengan data yang tidak representatif (misalnya, kebanyakan dari satu etnis atau jenis kelamin), hasilnya bisa menjadi bias dan tidak akurat untuk populasi lain.</li>
+                    <li><strong>Masalah "Kotak Hitam" (Black Box):</strong> Beberapa model AI sangat kompleks sehingga sulit untuk menjelaskan mengapa mereka membuat keputusan tertentu. Ini menjadi masalah akuntabilitas jika terjadi kesalahan.</li>
+                    <li><strong>Privasi Data:</strong> Pelatihan AI membutuhkan data pasien dalam jumlah masif. Bagaimana kita memastikan data ini tetap anonim dan aman dari penyalahgunaan?</li>
+                     <li><strong>Regulasi & Tanggung Jawab:</strong> Siapa yang bertanggung jawab jika AI salah diagnosis? Dokter, rumah sakit, atau pengembang perangkat lunak? Kerangka hukum untuk ini masih terus berkembang.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="my-20">
+            <h2 class="section-title">Pilar #2: Telemedicine, Pelayanan Kesehatan Tanpa Batas 🤳</h2>
+            <p class="section-subtitle">Mengatasi kendala jarak dan waktu, telemedicine membawa layanan rumah sakit langsung ke ruang tamu pasien, meningkatkan aksesibilitas dan efisiensi.</p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                 <div class="card card-border">
+                    <h3 class="text-2xl font-bold mb-4 text-[#03045E]">Faktor Pendorong Adopsi Telemedicine</h3>
+                     <div class="radar-chart-container">
+                        <canvas id="telemedicineDriversChart"></canvas>
+                    </div>
+                </div>
+                <div class="card card-border">
+                     <h3 class="text-2xl font-bold mb-4 text-[#03045E]">Membedah Spektrum Telemedicine</h3>
+                    <p class="mb-4">Mari kita bandingkan tiga model utama telemedicine:</p>
+                    <table class="w-full text-sm text-left">
+                        <thead class="bg-gray-100 font-bold">
+                            <tr><th class="p-2">Model</th><th class="p-2">Deskripsi</th><th class="p-2">Contoh Kasus</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b"><td class="p-2 font-bold">Sinkron</td><td class="p-2">Interaksi real-time</td><td class="p-2">Konsultasi video untuk evaluasi pasca operasi.</td></tr>
+                            <tr class="border-b"><td class="p-2 font-bold">Asinkron</td><td class="p-2">Data dikirim & dianalisis nanti</td><td class="p-2">Pasien mengirim foto ruam kulit ke dokter kulit.</td></tr>
+                            <tr class="border-b"><td class="p-2 font-bold">RPM</td><td class="p-2">Pemantauan jarak jauh</td><td class="p-2">Monitor gula darah atau tensi dari rumah.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+             <div class="research-box mt-12">
+                <h3 class="text-xl font-bold mb-2 text-[#0077B6]">🔍 Fokus Riset #2: Efektivitas Klinis & Kepuasan</h3>
+                <p class="mb-2">Sebuah studi oleh **American Medical Association** menemukan bahwa program Remote Patient Monitoring (RPM) berhasil mengurangi angka rawat inap ulang pada pasien gagal jantung hingga 50%.</p>
+                <p>Di Indonesia, sebuah *systematic review* yang dipublikasikan di **Jurnal Kedokteran Mulawarman** menyoroti bahwa meskipun pasien menunjukkan respon positif terhadap telemedicine karena kemudahan akses, tantangan seperti kualitas koneksi internet dan kebutuhan akan prosedur standar yang jelas masih menjadi evaluasi penting bagi rumah sakit.</p>
+            </div>
+            
+             <div class="card mt-12">
+                <h3 class="text-2xl font-bold mb-6 text-center text-[#03045E]">Tulang Punggung Teknis: Interoperabilitas</h3>
+                <p class="text-center text-gray-600 mb-8">Agar data dari telekonsultasi, RPM, dan kunjungan fisik bisa menyatu, dibutuhkan "bahasa" yang sama. Di sinilah peran standar interoperabilitas.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-red-50 p-6 rounded-lg border-l-4 border-red-500">
+                        <h4 class="font-bold text-lg text-red-800">Standar Lama: HL7 v2</h4>
+                        <p>Seperti mengirim faks. Datanya terstruktur tapi kaku dan sulit diadaptasi untuk aplikasi mobile modern. Setiap koneksi butuh pengaturan khusus yang rumit.</p>
+                    </div>
+                    <div class="bg-green-50 p-6 rounded-lg border-l-4 border-green-500">
+                         <h4 class="font-bold text-lg text-green-800">Standar Baru: FHIR®</h4>
+                        <p>Seperti menggunakan API modern (mirip yang dipakai Instagram atau Gojek). Fleksibel, berbasis web, dan mudah dihubungkan dengan aplikasi mobile. **Ini adalah standar yang diadopsi oleh platform SATUSEHAT Kemenkes.**</p>
+                    </div>
+                </div>
+                <p class="text-center font-semibold mt-8">Sebagai administrator, kamu harus memastikan setiap sistem baru yang dibeli sudah mendukung standar FHIR untuk integrasi masa depan.</p>
+            </div>
+
+        </section>
+
+        <section class="my-20">
+             <h2 class="section-title">Pilar #3: Aplikasi Mobile, 'Pintu Depan Digital' Rumah Sakit 📱✨</h2>
+            <p class="section-subtitle">Aplikasi pasien bukan lagi sekadar tambahan, melainkan telah menjadi "pintu depan digital" utama, di mana pengalaman pasien dimulai dan dikelola.</p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                <div class="card card-border">
+                    <h3 class="text-2xl font-bold mb-4 text-[#03045E]">Studi Kasus: Sehari dalam Kehidupan Pasien Digital</h3>
+                    <p class="mb-4">Mari ikuti perjalanan 'Sarah', seorang pasien diabetes, menggunakan aplikasi RS:</p>
+                    <ol class="list-decimal list-inside space-y-2">
+                        <li><strong>08:00:</strong> Sarah mendapat notifikasi pengingat untuk minum obat pagi.</li>
+                        <li><strong>10:00:</strong> Dia membuat janji temu dengan dokter gizi untuk minggu depan melalui aplikasi, tanpa perlu menelepon.</li>
+                        <li><strong>14:00:</strong> Hasil lab darahnya dari kemarin muncul di aplikasi, dengan catatan "kadar gula terkontrol, bagus!".</li>
+                        <li><strong>19:00:</strong> Dia membaca artikel di aplikasi tentang resep sehat untuk penderita diabetes yang dikirim oleh RS.</li>
+                    </ol>
+                </div>
+                 <div class="card card-border">
+                    <h3 class="text-2xl font-bold mb-4 text-[#03045E]">Fitur vs. Manfaat: Cara Pikir Administrator</h3>
+                    <p class="mb-2">Kamu tidak hanya melihat fitur, tapi juga manfaatnya bagi pasien dan RS.</p>
+                    <div class="space-y-4 mt-4">
+                        <p><strong class="text-[#0077B6]">Fitur:</strong> Pendaftaran Online → <strong class="text-[#03045E]">Manfaat Pasien:</strong> Bebas antre. <strong class="text-[#2a9d8f]">Manfaat RS:</strong> Staf lebih efisien.</p>
+                        <p><strong class="text-[#0077B6]">Fitur:</strong> Hasil Lab di Aplikasi → <strong class="text-[#03045E]">Manfaat Pasien:</strong> Akses cepat & transparan. <strong class="text-[#2a9d8f]">Manfaat RS:</strong> Mengurangi panggilan telepon ke lab.</p>
+                        <p><strong class="text-[#0077B6]">Fitur:</strong> Isi Ulang Resep → <strong class="text-[#03045E]">Manfaat Pasien:</strong> Obat tidak terputus. <strong class="text-[#2a9d8f]">Manfaat RS:</strong> Meningkatkan kepatuhan & hasil terapi.</p>
+                    </div>
+                </div>
+            </div>
+             <div class="research-box mt-12">
+                <h3 class="text-xl font-bold mb-2 text-[#0077B6]">🔍 Fokus Riset #3: Kepatuhan Pasien</h3>
+                <p class="mb-2">Studi di **Jurnal Ilmu Keperawatan dan Kebidanan** (2023) yang meneliti penggunaan aplikasi mobile untuk pasien penyakit jantung koroner di Bandung menunjukkan peningkatan signifikan pada skor kepatuhan pengobatan pada kelompok yang menggunakan aplikasi dibandingkan kelompok kontrol.</p>
+                <p>Secara internasional, **Journal of Medical Internet Research (JMIR)** secara konsisten mempublikasikan studi yang membuktikan bahwa fitur seperti pengingat obat dan akses mudah ke informasi kesehatan di aplikasi mobile berkorelasi positif dengan manajemen diri pasien yang lebih baik dan hasil klinis yang lebih positif.</p>
+            </div>
+        </section>
+        
+        <section class="my-20">
+            <h2 class="section-title">Contoh Implementasi di Indonesia</h2>
+            <p class="section-subtitle">Teori sudah, sekarang mari kita lihat bagaimana rumah sakit dan penyedia SIMRS di Indonesia menerapkan teknologi ini.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="card">
+                    <h3 class="text-2xl font-bold text-[#03045E] mb-2">Aplikasi Mobile Rumah Sakit</h3>
+                    <p class="font-semibold mb-2">Contoh: RSPI Mobile (RS Pondok Indah Group)</p>
+                    <p>Aplikasi ini adalah contoh bagus dari "pintu depan digital". Pasien dapat:</p>
+                    <ul class="list-disc list-inside mt-2 space-y-1">
+                        <li>Membuat janji temu dengan dokter spesifik.</li>
+                        <li>Melihat nomor antrean secara *real-time*.</li>
+                        <li>Mengakses riwayat kunjungan dan ringkasan medis mereka.</li>
+                        <li>Mendapatkan informasi kesehatan terpercaya dari RS.</li>
+                    </ul>
+                    <p class="mt-2">Ini adalah implementasi langsung dari pilar #3, yang berfokus pada pengalaman dan pemberdayaan pasien.</p>
+                </div>
+                <div class="card">
+                    <h3 class="text-2xl font-bold text-[#03045E] mb-2">Penyedia SIMRS dengan Modul Terintegrasi</h3>
+                    <p class="font-semibold mb-2">Contoh: SIMRS dari Docotel (DHealth) atau Aviat</p>
+                    <p>Penyedia seperti ini tidak hanya menjual software, tetapi sebuah ekosistem. SIMRS mereka seringkali sudah mencakup:</p>
+                     <ul class="list-disc list-inside mt-2 space-y-1">
+                        <li>Modul Rekam Medis Elektronik (RME) sebagai inti.</li>
+                        <li>Modul Telemedicine yang terhubung langsung ke RME.</li>
+                        <li>API yang siap untuk dihubungkan dengan aplikasi mobile kustom rumah sakit.</li>
+                        <li>Integrasi dengan platform pemerintah seperti SATUSEHAT dan PCare BPJS.</li>
+                    </ul>
+                    <p class="mt-2">Mereka menyediakan fondasi teknis bagi rumah sakit untuk dapat mengimplementasikan semua pilar yang kita bahas.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="my-20">
+            <h2 class="section-title">Gambaran Besar: Ekosistem Kesehatan Terintegrasi</h2>
+            <p class="section-subtitle">Ketiga pilar ini tidak berdiri sendiri. Mereka saling terhubung, menciptakan sebuah ekosistem di mana data mengalir dengan lancar untuk memberikan perawatan yang holistik dan proaktif.</p>
+             <div class="card mt-12">
+                <div class="ecosystem-diagram">
+                    <div class="ecosystem-node">
+                        <p class="text-2xl">👨‍⚕️</p><h4 class="font-bold">Telemedicine</h4><p class="text-xs">Data konsultasi & RPM</p>
+                    </div>
+                    <div class="ecosystem-node">
+                        <p class="text-2xl">🧠</p><h4 class="font-bold">AI & Analitik</h4><p class="text-xs">Prediksi & Bantuan Diagnosis</p>
+                    </div>
+                     <div class="ecosystem-center">SIRS & RME (Inti Sistem)</div>
+                    <div class="ecosystem-node">
+                        <p class="text-2xl">📱</p><h4 class="font-bold">Aplikasi Pasien</h4><p class="text-xs">Gerbang Interaksi Pasien</p>
+                    </div>
+                     <div class="ecosystem-node">
+                        <p class="text-2xl">🏥</p><h4 class="font-bold">Sistem Internal RS</h4><p class="text-xs">Lab, Farmasi, Penagihan</p>
+                    </div>
+                </div>
+                 <p class="text-center text-gray-600 mt-8">Data dari aplikasi pasien dan telemedicine masuk ke RME. Data RME ini kemudian dianalisis oleh AI untuk menghasilkan wawasan, yang kemudian disampaikan kembali ke dokter (melalui SIRS) atau ke pasien (melalui aplikasi mobile). Ini adalah siklus yang berkelanjutan.</p>
+            </div>
+        </section>
+
+        <section class="my-20">
+            <h2 class="section-title">Peran Kamu sebagai Administrator RS 4.0</h2>
+            <p class="section-subtitle">Tugasmu bukan lagi hanya mengelola operasional harian. Kamu adalah seorang arsitek sistem, manajer perubahan, dan ahli strategi digital.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-[#0077B6] text-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-bold border-b pb-2 mb-2">Perencana Strategis</h3>
+                    <p>Menganalisis dan memutuskan teknologi mana (AI, RPM, dll.) yang memberikan nilai terbesar bagi visi dan segmen pasar rumah sakitmu.</p>
+                </div>
+                 <div class="bg-[#0096C7] text-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-bold border-b pb-2 mb-2">Manajer Anggaran & ROI</h3>
+                    <p>Menyusun proposal investasi teknologi, menghitung *Return on Investment* (ROI), dan mempresentasikannya kepada dewan direksi.</p>
+                </div>
+                 <div class="bg-[#00B4D8] text-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-bold border-b pb-2 mb-2">Agen Manajemen Perubahan</h3>
+                    <p>Melatih dan mempersiapkan staf (dokter, perawat, admin) untuk mengadopsi alur kerja digital baru dan mengatasi resistensi terhadap perubahan.</p>
+                </div>
+                 <div class="bg-[#90E0EF] text-[#03045E] p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-bold border-b border-[#03045E] pb-2 mb-2">Penjaga Tata Kelola & Regulasi</h3>
+                    <p>Memastikan semua sistem mematuhi regulasi (Permenkes, GDPR), menjaga keamanan data pasien, dan mengelola interoperabilitas dengan platform seperti SATUSEHAT.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-[#03045E] text-white mt-16 py-12">
+        <div class="container mx-auto text-center px-4">
+            <p class="font-bold text-xl mb-2">Masa depan ada di tanganmu.</p>
+            <p>Sebagai administrator rumah sakit generasi baru, penguasaanmu terhadap tren teknologi ini akan menjadi pembeda utama dalam kariermu dan dalam memajukan kualitas layanan kesehatan di Indonesia.</p>
+        </div>
+    </footer>
+
+    <script>
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            return Array.isArray(label) ? label.join(' ') : label;
+        };
+        const sharedTooltipOptions = { plugins: { tooltip: { callbacks: { title: tooltipTitleCallback } } } };
+        const brilliantBlues = { primary: '#0077B6', secondary: '#00B4D8', accent: '#90E0EF', light: '#CAF0F8', dark: '#03045E' };
+
+        new Chart(document.getElementById('aiImpactChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Akurasi Diagnosis', 'Efisiensi Waktu Baca', 'Deteksi Dini'],
+                datasets: [{
+                    label: 'Peningkatan (%) oleh AI',
+                    data: [15, 20, 30],
+                    backgroundColor: [brilliantBlues.secondary, brilliantBlues.accent, brilliantBlues.primary],
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                ...sharedTooltipOptions,
+                plugins: { legend: { display: false } },
+                scales: { y: { beginAtZero: true, ticks: { callback: value => value + '%' } } }
+            }
+        });
+        
+        new Chart(document.getElementById('telemedicineDriversChart'), {
+            type: 'radar',
+            data: {
+                labels: ['Kenyamanan', 'Hemat Waktu', 'Akses ke Spesialis', 'Rasa Aman (Pasca-Pandemi)', 'Hemat Biaya'],
+                datasets: [{
+                    label: 'Faktor Pendorong Adopsi (Skala 1-10)',
+                    data: [9, 8, 7, 6, 7],
+                    fill: true,
+                    backgroundColor: 'rgba(0, 180, 216, 0.2)',
+                    borderColor: brilliantBlues.secondary,
+                    pointBackgroundColor: brilliantBlues.secondary,
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: brilliantBlues.secondary
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                ...sharedTooltipOptions,
+                plugins: { legend: { labels: { font: { size: 14 } } } },
+                scales: {
+                    r: {
+                        angleLines: { color: 'rgba(0,0,0,0.1)' },
+                        grid: { color: 'rgba(0,0,0,0.1)' },
+                        pointLabels: { font: { size: 14 } },
+                        suggestedMin: 0,
+                        suggestedMax: 10
+                    }
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>

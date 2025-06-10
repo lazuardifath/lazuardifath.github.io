@@ -185,6 +185,21 @@
             border-radius: 6px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
         }
+        .video-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            border-radius: 0.5rem;
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -290,6 +305,37 @@
                     </table>
                 </div>
             </div>
+            
+            <!-- VIDEO EMBED SECTION -->
+            <div class="card mt-12">
+                <h3 class="text-2xl font-bold mb-6 text-center text-[#03045E]">Video Penjelasan: Konsep Telemedicine</h3>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/9KxmdqK_6Zo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <div class="research-box mt-12">
+                <h3 class="text-xl font-bold mb-2 text-[#0077B6]">🔍 Fokus Riset #2: Efektivitas Klinis & Kepuasan</h3>
+                <p class="mb-2">Sebuah studi oleh **American Medical Association** menemukan bahwa program Remote Patient Monitoring (RPM) berhasil mengurangi angka rawat inap ulang pada pasien gagal jantung hingga 50%.</p>
+                <p>Di Indonesia, sebuah *systematic review* yang dipublikasikan di **Jurnal Kedokteran Mulawarman** menyoroti bahwa meskipun pasien menunjukkan respon positif terhadap telemedicine karena kemudahan akses, tantangan seperti kualitas koneksi internet dan kebutuhan akan prosedur standar yang jelas masih menjadi evaluasi penting bagi rumah sakit.</p>
+            </div>
+            
+             <div class="card mt-12">
+                <h3 class="text-2xl font-bold mb-6 text-center text-[#03045E]">Tulang Punggung Teknis: Interoperabilitas</h3>
+                <p class="text-center text-gray-600 mb-8">Agar data dari telekonsultasi, RPM, dan kunjungan fisik bisa menyatu, dibutuhkan "bahasa" yang sama. Di sinilah peran standar interoperabilitas.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-red-50 p-6 rounded-lg border-l-4 border-red-500">
+                        <h4 class="font-bold text-lg text-red-800">Standar Lama: HL7 v2</h4>
+                        <p>Seperti mengirim faks. Datanya terstruktur tapi kaku dan sulit diadaptasi untuk aplikasi mobile modern. Setiap koneksi butuh pengaturan khusus yang rumit.</p>
+                    </div>
+                    <div class="bg-green-50 p-6 rounded-lg border-l-4 border-green-500">
+                         <h4 class="font-bold text-lg text-green-800">Standar Baru: FHIR®</h4>
+                        <p>Seperti menggunakan API modern (mirip yang dipakai Instagram atau Gojek). Fleksibel, berbasis web, dan mudah dihubungkan dengan aplikasi mobile. **Ini adalah standar yang diadopsi oleh platform SATUSEHAT Kemenkes.**</p>
+                    </div>
+                </div>
+                <p class="text-center font-semibold mt-8">Sebagai administrator, kamu harus memastikan setiap sistem baru yang dibeli sudah mendukung standar FHIR untuk integrasi masa depan.</p>
+            </div>
+
         </section>
 
         <!-- SECTION 5: Advanced Telemedicine (NEW) -->

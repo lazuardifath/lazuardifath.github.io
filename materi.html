@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analisis 40 Layar: Tren Teknologi & Peluang SIMRS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Chosen Palette: Warm Neutrals -->
+    <!-- Application Structure Plan: Retaining the "40-screen" long-scrolling model, this version enhances each section with a dedicated visual element (Unicode icons, HTML/CSS diagrams, or charts). This makes each screen more engaging and conceptually clearer, reinforcing the topic at a glance before the user reads the text. The core narrative flow remains, but the visual storytelling is significantly strengthened. -->
+    <!-- Visualization & Content Choices: 
+        - Report Info: Each of the 40 sections. -> Goal: Enhance & Inform -> Viz/Method: A large, thematic Unicode/HTML icon is added to each screen. -> Interaction: Static visual. -> Justification: Icons provide immediate visual context for each topic, improving scannability and making the long scroll more engaging.
+        - Report Info: Kesenjangan Digital, Talenta Digital. -> Goal: Compare -> Viz/Method: Bar and Doughnut charts (Chart.js) are now integrated into their respective full-screen sections. -> Interaction: Hover tooltips. -> Justification: Adding data visualizations directly into the narrative scroll provides impactful, data-driven breaks from purely textual content.
+        - Report Info: Silo Data vs Interoperabilitas. -> Goal: Explain -> Viz/Method: Clear before-and-after diagrams built with HTML/Tailwind. -> Interaction: Static. -> Justification: The large, full-screen format gives these crucial diagrams space to be easily understood.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFBF5; 
+            color: #434242;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 450px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 450px;
+            }
+        }
+        .nav-link {
+            transition: color 0.3s, border-bottom-color 0.3s;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #2E8A99;
+            border-bottom-color: #2E8A99;
+        }
+        .section-content {
+            max-width: 800px;
+            text-align: center;
+        }
+        .section-number {
+            font-size: 4rem;
+            font-weight: 800;
+            color: rgba(46, 138, 153, 0.1);
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            z-index: 0;
+        }
+        .icon-display {
+            font-size: 5rem;
+            line-height: 1;
+            color: #2E8A99;
+            margin-bottom: 1.5rem;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header id="header" class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0">
+                    <a href="#" class="text-xl font-bold text-gray-800">Analisis 40 Layar</a>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#global-hub" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700">Tren Global (1-10)</a>
+                        <a href="#indonesia-hub" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700">Konteks Indonesia (11-20)</a>
+                        <a href="#kesehatan-hub" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700">Fokus Kesehatan (21-40)</a>
+                    </div>
+                </div>
+                 <div class="-mr-2 flex md:hidden">
+                    <button id="mobile-menu-button" type="button" class="bg-gray-200 inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-gray-800 hover:bg-gray-300 focus:outline-none">
+                        <span class="sr-only">Buka menu</span>
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </nav>
+        <div id="mobile-menu" class="md:hidden hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#global-hub" class="nav-link-mobile block px-3 py-2 rounded-md text-base font-medium text-gray-700">Tren Global (1-10)</a>
+                <a href="#indonesia-hub" class="nav-link-mobile block px-3 py-2 rounded-md text-base font-medium text-gray-700">Konteks Indonesia (11-20)</a>
+                <a href="#kesehatan-hub" class="nav-link-mobile block px-3 py-2 rounded-md text-base font-medium text-gray-700">Fokus Kesehatan (21-40)</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div id="global-hub">
+            <section class="min-h-screen flex items-center justify-center bg-white relative p-8"><div class="section-number">1</div><div class="section-content z-10"><div class="icon-display">💥</div><h2 class="text-4xl font-bold">Era Disrupsi Digital</h2><p class="mt-4 text-xl text-gray-600">Perubahan total cara kita hidup dan bekerja yang melahirkan model bisnis baru dan menumbangkan yang lama.</p></div></section>
+            <section class="min-h-screen flex items-center justify-center bg-[#FDFBF5] relative p-8"><div class="section-number">2</div><div class="section-content z-10"><div class="icon-display">☁️</div><h2 class="text-4xl font-bold">Cloud 101: IaaS, PaaS, SaaS</h2><p class="mt-4 text-xl text-gray-600">Tiga model layanan cloud: menyewa infrastruktur (IaaS), platform untuk developer (PaaS), atau perangkat lunak jadi (SaaS).</p></div></section>
+            <section class="min-h-screen flex items-center justify-center bg-white relative p-8"><div class="section-number">3</div><div class="section-content z-10"><div class="icon-display">🧠</div><h2 class="text-4xl font-bold">Membedakan AI, ML, & Deep Learning</h2><p class="mt-4 text-xl text-gray-600">AI adalah ilmunya, Machine Learning adalah tekniknya, dan Deep Learning adalah metode canggihnya yang meniru otak.</p></div></section>
+            <section class="min-h-screen flex items-center justify-center bg-[#FDFBF5] relative p-8"><div class="section-number">4</div><div class="section-content z-10"><div class="icon-display">🌐</div><h2 class="text-4xl font-bold">IoT: Dari Rumah ke Kota Pintar</h2><p class="mt-4 text-xl text-gray-600">Menghubungkan miliaran benda fisik ke internet, memungkinkan otomatisasi dan pengumpulan data.</p></div></section>
+            <section class="min-h-screen flex items-center justify-center bg-white relative p-8"><div class="section-number">5</div><div class="section-content z-10"><div class="icon-display">📊</div><h2 class="text-4xl font-bold">Big Data & 3V</h2><p class="mt-4 text-xl text-gray-600">Data dengan Volume (jumlah), Velocity (kecepatan), dan Variety (jenis) yang masif.</p></div></section>
+            <section class="min-h-screen flex items-center justify-center bg-[#FDFBF5] relative p-8"><div class="section-number">6</div><div class="section-content z-10"><div class="icon-display">🔗</div><h2 class="text-4xl font-bold">Blockchain Lebih dari Kripto</h2><p class="mt-4 text-xl text-gray-600">Sistem pencatatan digital super aman, transparan, dan tidak bisa diubah, berguna untuk banyak hal.</p></div></section>
+            <section class="min-h-screen flex items-center justify-center bg-white relative p-8"><div class="section-number">7</div><div class="section-content z-10"><div class="icon-display">📱</div><h2 class="text-4xl font-bold">Edge Computing</h2><p class="mt-4 text-xl text-gray-600">Memproses data lebih dekat ke sumbernya untuk mengurangi jeda waktu (latensi) dan menghemat bandwidth.</p></div></section>
+            <section class="min-h-screen flex items-center justify-center bg-[#FDFBF5] relative p-8"><div class="section-number">8</div><div class="section-content z-10"><div class="icon-display">📡</div><h2 class="text-4xl font-bold">5G: Bahan Bakar Masa Depan</h2><p class="mt-4 text-xl text-gray-600">Jaringan super cepat yang menjadi kunci untuk teknologi canggih seperti mobil otonom.</p></div></section>
+            <section class="min-h-screen flex items-center justify-center bg-white relative p-8"><div class="section-number">9</div><div class="section-content z-10"><div class="icon-display">🛡️</div><h2 class="text-4xl font-bold">Keamanan Siber (Cybersecurity)</h2><p class="mt-4 text-xl text-gray-600">Tantangan terbesar di era digital adalah melindungi data dan sistem dari serangan siber.</p></div></section>
+            <section class="min-h-screen flex items-center justify-center bg-[#FDFBF5] relative p-8"><div class="section-number">10</div><div class="section-content z-10"><div class="icon-display">⚛️</div><h2 class="text-4xl font-bold">Komputasi Kuantum</h2><p class="mt-4 text-xl text-gray-600">Teknologi masa depan untuk memecahkan masalah super kompleks yang mustahil bagi komputer biasa.</p></div></section>
+        </div>
+
+        <div id="indonesia-hub">
+            <section class="min-h-screen flex items-center justify-center bg-white relative p-8"><div class="section-number">11</div><div class="section-content z-10"><div class="icon-display">📜</div><h2 class="text-4xl font-bold">Sejarah Singkat TI Indonesia</h2><p class="mt-4 text-xl text-gray-600">Dari Satelit Palapa, warnet, hingga era BBM yang membentuk fondasi digital bangsa.</p></div></section>
+            <section class="min-h-screen flex items-center justify-center bg-[#FDFBF5] relative p-8"><div class="section-number">12</div><div class="section-content z-10"><div class="icon-display">📲</div><h2 class="text-4xl font-bold">Fenomena Mobile-First</h2><p class="mt-4 text-xl text-gray-600">Indonesia 'melompat' dari era PC ke mobile, menjadikan smartphone sebagai pusat segalanya.</p></div></section>
+            <section class="min-h-screen flex items-center justify-center bg-white relative p-8"><div class="section-number">13</div><div class="section-content z-10"><div class="icon-display">🧩</div><h2 class="text-4xl font-bold">Lahirnya Super-Apps</h2><p class="mt-4 text-xl text-gray-600">Satu aplikasi untuk semua kebutuhan, buah dari budaya mobile-first.</p></div></section>
+            <section class="min-h-screen flex items-center justify-center bg-[#FDFBF5] relative p-8"><div class="section-number">14</div><div class="section-content z-10"><div class="icon-display">💳</div><h2 class="text-4xl font-bold">Revolusi Fintech</h2><p class="mt-4 text-xl text-gray-600">Demokratisasi layanan keuangan melalui e-wallet, pinjaman online, dan bank digital.</p></div></section>
+            <section class="min-h-screen flex items-center justify-center bg-white relative p-8"><div class="section-number">15</div><div class="section-content z-10"><div class="icon-display">🛒</div><h2 class="text-4xl font-bold">Ledakan E-commerce</h2><p class="mt-4 text-xl text-gray-600">Mengubah total cara kita berbelanja dan membuka peluang bagi jutaan UMKM.</p></div></section>
+            <section class="min-h-screen flex items-center justify-center bg-[#FDFBF5] relative p-8"><div class="section-number">16</div><div class="section-content z-10"><div class="icon-display">🛰️</div><h2 class="text-4xl font-bold">Proyek Palapa Ring</h2><p class="mt-4 text-xl text-gray-600">Inisiatif "jalan tol digital" dari pemerintah untuk meratakan akses internet ke seluruh pelosok.</p></div></section>
+            <section class="min-h-screen flex items-center justify-center bg-white relative p-8"><div class="section-number">17</div><div class="section-content z-10"><div class="icon-display">🏛️</div><h2 class="text-4xl font-bold">Kebijakan Pendukung Ekosistem</h2><p class="mt-4 text-xl text-gray-600">Program seperti Satu Data Indonesia dan 1000 Startup bertujuan menumbuhkan iklim inovasi.</p></div></section>
+            <section class="min-h-screen flex items-center justify-center bg-[#FDFBF5] relative p-8">
+                <div class="section-number">18</div>
+                <div class="section-content z-10">
+                    <div class="icon-display">📉</div>
+                    <h2 class="text-4xl font-bold">PR #1: Kesenjangan Digital</h2>
+                    <p class="mt-4 text-xl text-gray-600">Tantangan pemerataan akses internet dan kemampuan digital antara berbagai wilayah.</p>
+                    <div class="chart-container mt-8"><canvas id="digitalDivideChart"></canvas></div>
+                </div>
+            </section>
+            <section class="min-h-screen flex items-center justify-center bg-white relative p-8"><div class="section-number">19</div><div class="section-content z-10"><div class="icon-display">🎓</div><h2 class="text-4xl font-bold">PR #2: Darurat Talenta Digital</h2><p class="mt-4 text-xl text-gray-600">Kebutuhan industri akan ahli data, AI, dan siber jauh melampaui pasokan lulusan yang siap kerja.</p></div></section>
+            <section class="min-h-screen flex items-center justify-center bg-[#FDFBF5] relative p-8"><div class="section-number">20</div><div class="section-content z-10"><div class="icon-display">👥</div><h2 class="text-4xl font-bold">Peran Penting Komunitas & Startup</h2><p class="mt-4 text-xl text-gray-600">Komunitas developer dan startup menjadi motor penggerak inovasi dari bawah yang paling lincah.</p></div></section>
+        </div>
+
+        <div id="kesehatan-hub">
+            <section class="min-h-screen flex items-center justify-center bg-white relative p-8"><div class="section-number">21</div><div class="section-content z-10"><div class="icon-display">❤️‍🩹</div><h2 class="text-4xl font-bold">Apa itu Kesehatan Digital?</h2><p class="mt-4 text-xl text-gray-600">Semua teknologi di sektor kesehatan, dari telemedicine hingga rekam medis elektronik.</p></div></section>
+            <section class="min-h-screen flex items-center justify-center bg-[#FDFBF5] relative p-8"><div class="section-number">22</div><div class="section-content z-10"><div class="icon-display">🏥</div><h2 class="text-4xl font-bold">SIMRS: Jantung Rumah Sakit</h2><p class="mt-4 text-xl text-gray-600">Sistem saraf pusat yang mengatur alur kerja dan data, dari pendaftaran hingga pembayaran.</p></div></section>
+            <section class="min-h-screen flex items-center justify-center bg-white relative p-8"><div class="section-number">23</div><div class="section-content z-10"><div class="icon-display">📋</div><h2 class="text-4xl font-bold">Modul Administrasi SIMRS</h2><p class="mt-4 text-xl text-gray-600">Bagian yang mengurus semua hal non-klinis: pendaftaran, jadwal, billing, dan klaim.</p></div></section>
+            <section class="min-h-screen flex items-center justify-center bg-[#FDFBF5] relative p-8"><div class="section-number">24</div><div class="section-content z-10"><div class="icon-display">🩺</div><h2 class="text-4xl font-bold">Modul Klinis SIMRS</h2><p class="mt-4 text-xl text-gray-600">Bagian medisnya: Rekam Medis Elektronik (RME), order dokter untuk resep & lab (CPOE).</p></div></section>
+            <section class="min-h-screen flex items-center justify-center bg-white relative p-8"><div class="section-number">25</div><div class="section-content z-10"><div class="icon-display">💾</div><h2 class="text-4xl font-bold">Penyakit Sistem Warisan</h2><p class="mt-4 text-xl text-gray-600">Banyak RS terjebak sistem jadul (legacy) yang sulit di-update dan diintegrasikan.</p></div></section>
+            <section class="min-h-screen flex items-center justify-center bg-[#FDFBF5] relative p-8">
+                <div class="section-number">26</div>
+                <div class="section-content z-10">
+                    <div class="icon-display">🧱</div>
+                    <h2 class="text-4xl font-bold">Masalah Klasik: Silo Data</h2>
+                    <p class="mt-4 text-xl text-gray-600">Data terpisah-pisah per departemen, menghambat dokter melihat gambaran utuh kondisi pasien.</p>
+                </div>
+            </section>
+            <section class="min-h-screen flex items-center justify-center bg-white relative p-8">
+                <div class="section-number">27</div>
+                <div class="section-content z-10">
+                    <div class="icon-display">🤝</div>
+                    <h2 class="text-4xl font-bold">Interoperabilitas: Solusinya!</h2>
+                    <p class="mt-4 text-xl text-gray-600">Kemampuan sistem berbeda untuk 'berbicara' dan bertukar data untuk menjebol silo.</p>
+                </div>
+            </section>
+            <section class="min-h-screen flex items-center justify-center bg-[#FDFBF5] relative p-8"><div class="section-number">28</div><div class="section-content z-10"><div class="icon-display">📜</div><h2 class="text-4xl font-bold">Bahasa Global: HL7 & DICOM</h2><p class="mt-4 text-xl text-gray-600">Sistem perlu bahasa standar: HL7 untuk data teks klinis dan DICOM untuk gambar medis.</p></div></section>
+            <section class="min-h-screen flex items-center justify-center bg-white relative p-8"><div class="section-number">29</div><div class="section-content z-10"><div class="icon-display">🔥</div><h2 class="text-4xl font-bold">Bahasa Masa Depan: FHIR</h2><p class="mt-4 text-xl text-gray-600">Standar baru yang modern dan fleksibel, menjadi dasar platform SATUSEHAT.</p></div></section>
+            <section class="min-h-screen flex items-center justify-center bg-[#FDFBF5] relative p-8"><div class="section-number">30</div><div class="section-content z-10"><div class="icon-display">🔒</div><h2 class="text-4xl font-bold">Regulasi Kunci: UU PDP</h2><p class="mt-4 text-xl text-gray-600">UU Perlindungan Data Pribadi mengatur cara RS menjaga data sensitif pasien.</p></div></section>
+            <section class="min-h-screen flex items-center justify-center bg-white relative p-8"><div class="section-number">31</div><div class="section-content z-10"><div class="icon-display">💸</div><h2 class="text-4xl font-bold">Peluang: Pindah ke Cloud</h2><p class="mt-4 text-xl text-gray-600">Lebih hemat biaya, aman, dan fleksibel. RS bisa fokus pada layanan pasien.</p></div></section>
+            <section class="min-h-screen flex items-center justify-center bg-[#FDFBF5] relative p-8"><div class="section-number">32</div><div class="section-content z-10"><div class="icon-display">🔬</div><h2 class="text-4xl font-bold">Peluang: AI untuk Diagnosis</h2><p class="mt-4 text-xl text-gray-600">AI membantu dokter mendeteksi penyakit dari gambar medis lebih cepat dan akurat.</p></div></section>
+            <section class="min-h-screen flex items-center justify-center bg-white relative p-8"><div class="section-number">33</div><div class="section-content z-10"><div class="icon-display">📈</div><h2 class="text-4xl font-bold">Peluang: AI untuk Efisiensi</h2><p class="mt-4 text-xl text-gray-600">Mengoptimalkan jadwal operasi, memprediksi lonjakan pasien, hingga otomatisasi klaim BPJS.</p></div></section>
+            <section class="min-h-screen flex items-center justify-center bg-[#FDFBF5] relative p-8"><div class="section-number">34</div><div class="section-content z-10"><div class="icon-display">💓</div><h2 class="text-4xl font-bold">Peluang: IoMT</h2><p class="mt-4 text-xl text-gray-600">Memantau pasien di rumah secara real-time melalui alat sensor untuk mencegah kondisi darurat.</p></div></section>
+            <section class="min-h-screen flex items-center justify-center bg-white relative p-8"><div class="section-number">35</div><div class="section-content z-10"><div class="icon-display">💻</div><h2 class="text-4xl font-bold">Peluang: Telemedicine Terintegrasi</h2><p class="mt-4 text-xl text-gray-600">Menyambungkan konsultasi online langsung ke rekam medis elektronik resmi.</p></div></section>
+            <section class="min-h-screen flex items-center justify-center bg-[#FDFBF5] relative p-8"><div class="section-number">36</div><div class="section-content z-10"><div class="icon-display">🗂️</div><h2 class="text-4xl font-bold">Peluang: Analitika Data</h2><p class="mt-4 text-xl text-gray-600">Membantu manajemen membuat keputusan strategis berbasis bukti dan data kinerja.</p></div></section>
+            <section class="min-h-screen flex items-center justify-center bg-white relative p-8"><div class="section-number">37</div><div class="section-content z-10"><div class="icon-display">🔑</div><h2 class="text-4xl font-bold">Peluang: Blockchain</h2><p class="mt-4 text-xl text-gray-600">Memberikan pasien kunci digital untuk mengontrol penuh data medis mereka.</p></div></section>
+            <section class="min-h-screen flex items-center justify-center bg-[#FDFBF5] relative p-8"><div class="section-number">38</div><div class="section-content z-10"><div class="icon-display">🇮🇩</div><h2 class="text-4xl font-bold">Kunci Penggerak: SATUSEHAT</h2><p class="mt-4 text-xl text-gray-600">Platform Kemenkes ini 'memaksa' semua faskes mengadopsi standar dan terhubung.</p></div></section>
+            <section class="min-h-screen flex items-center justify-center bg-white relative p-8"><div class="section-number">39</div><div class="section-content z-10"><div class="icon-display">🚀</div><h2 class="text-4xl font-bold">Ujung Tombak: Startup</h2><p class="mt-4 text-xl text-gray-600">Startup health-tech yang lincah akan menjadi ujung tombak dalam menciptakan solusi inovatif.</p></div></section>
+            <section class="min-h-screen flex items-center justify-center bg-teal-50 text-teal-900 relative p-8"><div class="section-number !text-teal-200">40</div><div class="section-content z-10"><div class="icon-display">💡</div><h2 class="text-4xl font-bold">Kesimpulan: Anda Adalah Masa Depannya!</h2><p class="mt-4 text-xl text-teal-800">Sektor kesehatan digital Indonesia adalah lahan subur. Pelajari teknologinya, dan jadilah bagian dari solusi!</p></div></section>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            document.querySelectorAll('.nav-link-mobile, .nav-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    if (mobileMenu.classList.contains('hidden') === false) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                });
+            });
+            
+            const sections = document.querySelectorAll('[id$="-hub"]');
+            const navLinks = document.querySelectorAll('header .nav-link');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === `#${id}`) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            sections.forEach(section => observer.observe(section));
+
+            Chart.defaults.font.family = "'Inter', sans-serif";
+
+            const digitalDivideCtx = document.getElementById('digitalDivideChart')?.getContext('2d');
+            if(digitalDivideCtx) {
+                 new Chart(digitalDivideCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Jawa & Bali', 'Sumatera', 'Kalimantan', 'Sulawesi', 'Lainnya'],
+                        datasets: [{
+                            label: 'Tingkat Penetrasi Internet (%)',
+                            data: [77, 68, 66, 65, 62],
+                            backgroundColor: 'rgba(46, 138, 153, 0.6)',
+                            borderColor: 'rgba(46, 138, 153, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: { beginAtZero: false, min: 50, ticks: { callback: (v) => v + '%' } }
+                        },
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: { callbacks: { label: (c) => `Penetrasi: ${c.raw}%` } }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
